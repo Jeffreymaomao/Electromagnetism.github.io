@@ -1,0 +1,174 @@
+.question{
+    
+}
+.question>li:nth-child(n):hover{
+    
+}
+.sol {
+    color: blue;
+    padding:10px;
+    border:solid 1px gray;
+    margin:30px;
+    border-radius: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.scroll-wrapper{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.theorem{
+    padding:20px;
+    margin: auto;
+    width: 60%;
+    min-width: 500px;
+    border:solid 1px aliceblue;
+    background-color: aliceblue;
+}
+.theorem:hover{
+    border:solid 1px black;
+}
+.theorem::before {
+  content: 'Theorem ';
+}
+.sidebar{
+    background-color: none;
+    color:white;
+    height:100%;
+    position:fixed;
+    left: 0;
+    top:0;
+    padding-right:0px;
+    transform: translate(-81px, 0);
+    transition-duration: 0.5s;
+    overflow-y: auto;
+}
+.sidebar>div>a>span{
+    background-color: blue;
+    display: inline-block;
+}
+.sidebar>div{
+    opacity: 0.5;
+    border-radius: 0px 0px 10px 0px;
+    overflow: hidden;
+}
+.sidebar:hover{
+    transform: translate(0, 0);
+    transition-duration: 0.5s;
+}
+.sidebar>div>a{
+    height:auto;
+    padding:10px 20px 10px 15px;
+    background-color: black;
+    display: block;
+    border:solid 0.5px;
+}
+.sidebar>div>a:hover{
+    opacity: 0.7;
+}
+.sidebar>div>a{
+    color:white;
+    text-decoration: none;
+}
+.sidebar>div>a:active{
+    background-color: hsl(0,0%,90%);
+    color:black;
+}
+
+body{
+    margin:0;100px 50px
+    padding:0;/*(top button) (left right)*/
+    max-width: 100vw;
+/*    min-width: 600px;*/
+    background-color: white;
+    font-size:1.0rem;
+}
+footer {
+    margin-top: 50px;
+    margin-left:-50px;
+    margin-bottom: -100px;
+    padding:50px;
+    width:100vw;
+    text-align: center;
+    background-color: DarkSalmon;
+    color: white;
+}
+.important{
+    text-align: center;
+    color: blue;
+/*    background-color: azure;*/
+}
+h4{
+    border-bottom: 2px solid black;
+}
+h5{
+    border-bottom: 0.5px solid #ccc;
+}
+
+ul{
+    margin-left: 30px;
+    border-left: solid 2px; 
+}
+#title{
+    height:auto;
+}
+.question{
+/*
+    margin:0;
+    padding:0;
+    scroll-snap-points-y: repeat(100%);
+    scroll-snap-type: y mandatory;
+    background-color: antiquewhite;
+*/
+    overflow-y: hidden;
+    height: 100%;
+    width:100%;
+}
+.question>li{
+/*
+    min-height:100vh;
+    scroll-snap-align: center;
+*/
+    
+}
+.note{
+   margin-left: 5%;
+    padding-left:1em;
+    border:solid 0.5px
+}
+
+.MathJax { 
+    font-size: 1em !important; 
+}
+.MJX-TEX { font-size:180% } !important
+@media only screen and (max-width: 600px) {
+    body {
+        padding:0;/*(top button) (left right)*/  
+    }
+    footer{
+        margin-left:0px;
+    }
+    sol{
+        width:100%;
+    }
+    .MathJax { 
+    font-size: 1em !important; 
+    }
+    .sidebar{
+        display: none;
+    }
+    
+    h1{
+        margin: 0px;
+        margin-top: 50px;
+    }
+    h2{
+        margin-top: 0px;
+    }
+    .theorem{
+        width: 90%;
+        min-width: auto;
+        max-width: 100wh;
+    }
+}
+

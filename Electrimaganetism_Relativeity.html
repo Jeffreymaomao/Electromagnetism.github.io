@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jeffreymaomao/figure/main/fig2.ico">
+    <title>Electromagnetic</title>
+    <link rel="stylesheet" href="/Users/apple/Documents/LaTex/LaTex.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    
+<!--
+    
+    <script defer id="mathjax" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']]
+            },
+            "HTML-CSS": {
+                fonts: ["Latin-Modern"]
+            }
+        });
+    </script>
+    
+-->
+    
+    <script id="mathjax" type="text/javascript" src="/Users/apple/Documents/mathjax/es5/tex-svg.js?config=TeX-AMS-MML_HTMLorMML.js" defer></script>
+    <script>
+        
+        MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            }
+        };
+//        MathJax.config.svg.font.cssFamilyPrefix = '';
+    </script>
+    
+    
+<!--
+    <style>.MathJax {font-size: 0.5em !important;}</style>
+    <script id="mathjax" type="text/javascript" src="/Users/apple/Documents/mathjax/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML.js" defer></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            }
+        };
+    </script>
+-->
+
+    
+    <script defer src='javascript.js'></script>
+    <base target="_blank">
+</head>
+
+<body style="">
+    <div class="sidebar" style="display:none;">
+        <div>
+            <a href="#Q1">Introduction</a>
+            <a href="#Q2">Introduction</a>
+            <a href="#Q3">Introduction</a>
+            <a href="#Q4">Introduction</a>
+            <a href="#Q5">Introduction</a>
+            <a href="#Q6">Introduction</a>
+            <a href="#Q7">Introduction</a>
+        </div>
+    </div>
+    <!--latex new command-->
+    <div style="display:none">
+        <!--In html, symbol <,> will easily get error, so define the symbol name first-->
+        $
+        \newcommand\abs[1]{\left|#1\right|}
+        \newcommand\smaller{&#60}
+        \newcommand\bigger{&#62}
+        \newcommand\and{\quad\text{and}\quad}
+        \newcommand\where{\quad\text{where}\quad}
+        \newcommand\then{\quad\Rightarrow\quad}
+        \newcommand\with {\quad,\quad}
+        
+        $
+    </div>
+    <!--Title-->
+    <div id='title' style="text-align:center">
+        <h1>Electromagnetic</h1>
+        <h2>Electromagnetic and Relativity </h2>
+        <hr>
+    </div>
+    <ol class="question" style=" list-style-type: none;">
+        <!--Inctro-->
+        <li id="Q1">
+            <h3>
+                Introduction
+            </h3>
+            <p>
+                We’ve seen that Maxwell’s equations have wave solutions which travel at the speed
+                of light. But there’s another place in physics where the speed of light plays a prominent role: the theory of special relativity. How does electromagnetism fit with special
+                relativity?
+            </p>
+            <p>
+                Our goal in this section is to view electromagnetism through the lens of relativity.
+                We will find that observers in different frames will disagree on what they call electric fields and what they call magnetic fields. They will observe different charge densities and different currents. But all will agree that these quantities are related by the same
+                Maxwell equations. Moreover, there is a pay-off to this. It’s only when we formulate
+                the Maxwell equations in a way which is manifestly consistent with relativity that we
+                see their true beauty. The slightly cumbersome vector calculus equations that we’ve
+                been playing with throughout these lectures will be replaced by a much more elegant
+                and simple-looking set of equations.
+            </p>
+        </li>
+        <!--Inctro-->
+        <li id="Q2">
+            <h3>A Review of Special Relativity</h3>
+            Two system
+            \[\begin{aligned}
+            {{S}}& :(ct,x,y,z)
+            \\
+            {{S}'}& :(ct',x',y',z')
+            \end{aligned}\]
+            with speed in $x$-coordinates, the two system related by Lorentz Boost
+            \[x' = \gamma \left(x-\frac{v}{c}ct\right)
+            \with
+            ct' = \gamma\left(ct-\frac{v}{c}x\right)
+            \]
+            also $y'=y$ and $z'=z$.
+            Meanwhile  is the ubiquitous factor
+            \[\gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}\]
+
+            <ul>
+                <li>
+                    <h4>Four-Vectors</h4>
+                    It’s extremely useful to package these spacetime coordinates in 4-vectors, with indices running from $\mu = 0$ to $\mu = 3$
+                    \[X^{\mu}=(ct,x,y,z)\quad\mu=0,1,2,3\]
+                    Note that the index is a superscript rather than subscript. This will be important shortly.
+                </li>
+                <li>
+                    <h4>Lorentz transformation</h4>
+                    A general Lorentz transformation is a linear map from $X$ to $X'$ of the form
+                    \[\left(X'\right)^\mu = {\Lambda^\mu}_\nu X^\nu\]
+
+                    that is
+                    \[\begin{pmatrix}{x'}^{0}\\{x'}^{1}\\{x'}^{2}\\{x'}^{3}\end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                    {\Lambda ^{0}}_{0}&{\Lambda ^{0}}_{1}&{\Lambda ^{0}}_{2}&{\Lambda ^{0}}_{3}\\
+                    {\Lambda ^{1}}_{0}&{\Lambda ^{1}}_{1}&{\Lambda ^{1}}_{2}&{\Lambda ^{1}}_{3}\\
+                    {\Lambda ^{2}}_{0}&{\Lambda ^{2}}_{1}&{\Lambda ^{2}}_{2}&{\Lambda ^{2}}_{3}\\
+                    {\Lambda ^{3}}_{0}&{\Lambda ^{3}}_{1}&{\Lambda ^{3}}_{2}&{\Lambda ^{3}}_{3}\\
+                    \end{pmatrix}
+                    \begin{pmatrix}x^{0}\\x^{1}\\x^{2}\\x^{3}\end{pmatrix}\]
+
+                    Here $\Lambda$ is a $4\times 4$ matrix which obey the matrix equation
+                    \[\Lambda^T\eta \Lambda = \eta
+                    \quad\Leftrightarrow\quad
+                    {\Lambda^\rho}_{\mu}\eta_{\rho\sigma}{\Lambda^{\sigma}}_{\nu} = \eta_{\mu\nu}\]
+                    that is
+                    \[
+                    \begin{pmatrix}
+                    {\Lambda ^{0}}_{0}&{\Lambda ^{0}}_{1}&{\Lambda ^{0}}_{2}&{\Lambda ^{0}}_{3}\\
+                    {\Lambda ^{1}}_{0}&{\Lambda ^{1}}_{1}&{\Lambda ^{1}}_{2}&{\Lambda ^{1}}_{3}\\
+                    {\Lambda ^{2}}_{0}&{\Lambda ^{2}}_{1}&{\Lambda ^{2}}_{2}&{\Lambda ^{2}}_{3}\\
+                    {\Lambda ^{3}}_{0}&{\Lambda ^{3}}_{1}&{\Lambda ^{3}}_{2}&{\Lambda ^{3}}_{3}\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                    +1& 0& 0& 0\\
+                    0& -1& 0& 0\\
+                    0& 0& -1& 0\\
+                    0& 0& 0& -1\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                    {\Lambda ^{0}}_{0}&{\Lambda ^{1}}_{0}&{\Lambda ^{2}}_{0}&{\Lambda ^{3}}_{0}\\
+                    {\Lambda ^{0}}_{1}&{\Lambda ^{1}}_{1}&{\Lambda ^{2}}_{1}&{\Lambda ^{3}}_{1}\\
+                    {\Lambda ^{0}}_{2}&{\Lambda ^{1}}_{2}&{\Lambda ^{2}}_{2}&{\Lambda ^{3}}_{2}\\
+                    {\Lambda ^{0}}_{3}&{\Lambda ^{1}}_{3}&{\Lambda ^{2}}_{3}&{\Lambda ^{3}}_{3}\\
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                    +1& 0& 0& 0\\
+                    0& -1& 0& 0\\
+                    0& 0& -1& 0\\
+                    0& 0& 0& -1\\
+                    \end{pmatrix}.
+                    \]
+                    And, there are two solutions for this equation
+                    <h5>Rotation</h5>
+                    \[{\Lambda^{\mu}}_{\nu}
+                    =
+                    \left(
+                    \begin{array}{c|ccc}
+                    1& 0& 0& 0\\\hline
+                    0& & & \\
+                    0& & R& \\
+                    0& & & \\
+                    \end{array}
+                    \right)\]
+                    <h5>Lorentz Boost</h5>
+                    In $x$-direction,
+                    \[{\Lambda^{\mu}}_{\nu}
+                    =
+                    \left(
+                    \begin{array}{cc|cc}
+                    \gamma& -\gamma v/c& 0& 0\\
+                    -\gamma v/c& \gamma& 0& 0\\\hline
+                    0& 0& 1& 0\\
+                    0& 0& 0& 1\\
+                    \end{array}
+                    \right)\]
+                    Proper transformations, in any direction $\vec{v}$ and $v = \abs{v} = \sqrt{v_x^2+v_y^2+v_z^2}$,
+                    \[{\Lambda^{\mu}}_{\nu}=
+                    \begin{pmatrix}
+                    \gamma & -\gamma v_{x}/c&
+                    -\gamma v_{y}/c& -\gamma v_{z}/c\\
+                    -\gamma v_{x}/c& 1+(\gamma -1){\dfrac {v_{x}^{2}}{v^{2}}}&
+                    (\gamma -1){\dfrac {v_{x}v_{y}}{v^{2}}}&(\gamma -1){\dfrac {v_{x}v_{z}}{v^{2}}}\\
+                    -\gamma v_{y}/c& (\gamma -1){\dfrac {v_{y}v_{x}}{v^{2}}}&
+                    1+(\gamma -1){\dfrac {v_{y}^{2}}{v^{2}}}&(\gamma -1){\dfrac {v_{y}v_{z}}{v^{2}}}\\
+                    -\gamma v_{z}/c& (\gamma -1){\dfrac {v_{z}v_{x}}{v^{2}}}&
+                    (\gamma -1){\dfrac {v_{z}v_{y}}{v^{2}}}&1+(\gamma -1){\dfrac {v_{z}^{2}}{v^{2}}}
+                    \end{pmatrix}\]
+                </li>
+                <li>
+                    <h4>Proper time</h4>
+                    <div class="important">All observers agree this time</div>
+                    Suppose that, in some frame, the particle traces out a worldline. The clever trick is to find a way to parameterise this path in a way that all observers agree upon. The natural choice is the proper time $\tau$, the duration of time experienced by the particle itself.
+                    If you’re sitting in some frame, watching some particle move with an old-fashioned Newtonian 3-velocity $\vec{u}(t)$, then it’s simple to show that the relationship between your time $t$ and the proper time of the particle $\tau$ is given by
+                    \[\frac{d\tau}{dt} = \gamma\left(\vec{u}\right)\]
+                </li>
+                <li>
+                    <h4>4-Velocity</h4>
+                    Suppose that the particle traces out a path $X(\tau)$ in some frame. Then the 4-velocity is
+                    \[U^\mu=\frac{dX}{d\tau} = \gamma \begin{pmatrix}c\\\vec{u}\end{pmatrix}\]
+                </li>
+                <li>
+                    <h4>4-Momentum</h4>
+                    Similarly, the 4-momentum is $P = mU$ where $m$ is the rest mass of the particle. We write
+                    \[P^\mu = \begin{pmatrix}E/c\\ \vec{p}\end{pmatrix}\]
+                    where $E = m\gamma c^2$ is the energy of the particle and $\vec{p} = \gamma m\vec{u}$ is the 3-momentum in special relativity.
+                </li>
+                <li>
+                    <h4>Indices Up, Indices Down</h4>
+                    4 vector is using superscript $X^\mu = (ct,x,y,z)$ or
+                    \[X^\mu = \begin{pmatrix}ct\\\vec{x}\end{pmatrix},\]
+                    and we may define
+                    \[X_\mu = \begin{pmatrix}ct\\-\vec{x}\end{pmatrix}.\]
+                    The inner product in Minkowdski space can be written 。using the usual of summinh overrepetted indices as
+                    \[X^\mu X_\mu = c^2t^2 - \vec{x}\cdot\vec{x},\]
+                    also note that it is illegal to write things like $X^\mu X^\mu$.
+                    <br>
+                    Here, the relationship between $X^{\nu}$ and $X_{\mu}$ are Minkowdski metrix
+                    \[\eta_{\mu\nu} = \begin{pmatrix}
+                    +1& 0& 0& 0\\
+                    0& -1& 0& 0\\
+                    0& 0& -1& 0\\
+                    0& 0& 0& -1\\
+                    \end{pmatrix}\]
+                    then
+                    \[X_{\mu} = \eta_{\mu\nu}X^{\nu}\]
+                    with the inverse of $\eta_{\mu\nu}$ which, fortunately, is the same matrix
+                    \[\eta^{\mu\nu} = \begin{pmatrix}
+                    +1& 0& 0& 0\\
+                    0& -1& 0& 0\\
+                    0& 0& -1& 0\\
+                    0& 0& 0& -1\\
+                    \end{pmatrix}\]
+                    which means we have
+                    \[\eta^{\mu\rho}\eta_{\rho\nu}=\delta^{\mu}_{\nu}\]
+                    and we can write
+                    \[X^\nu = \eta^{\nu\mu}X_{\mu}\]
+                </li>
+                <li>
+                    <h4>4-Derivative </h4>
+                    The 4 derivative is defined by
+                    \[\partial^{\mu} = \eta_{\mu\nu} \partial^{\nu}
+                    = \left(\frac{1}{c}\frac{\partial}{\partial t},-\frac{\partial}{\partial x},-\frac{\partial}{\partial y},-\frac{\partial}{\partial z}\right) =\begin{pmatrix}\partial_t/c\\ -\nabla\end{pmatrix}\]
+                    
+                    and its covector
+                    
+                    \[\partial_{\mu} = \eta^{\mu\nu} \partial_{\nu}
+                    = \left(\frac{1}{c}\frac{\partial}{\partial t},\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\right) =\begin{pmatrix}\partial_t/c\\ \nabla\end{pmatrix}\]
+                </li>
+                <li>
+                    <h4>Vectors, Covectors and Tensors</h4>
+                    <h5>Vectors and Covectors</h5>
+                    $X^\mu$ and $X_\mu$ are in different spaces called "daul spaces".<br>
+                    We'll continue to refer to $X^\mu$ as vectors, but to distinquish then, we'll call $X_\mu$ covectors.
+                    <br>
+                    The primary difference between a vecotor and covector is how they transform under rotation and boosts.
+                    <br>
+                    Under the Lorentz transform, any 4-vectors changes as
+                    \[X^\mu \quad\to\quad X'^\mu = {\Lambda^{\mu}}_{\nu}X^\nu\]
+                    then
+                    \[\begin{aligned}
+                    X_\mu \quad\to\quad X'_\mu
+                    &= \eta_{\mu\rho}X'^{\rho}
+                    \\[2ex]
+                    &= \eta_{\mu\rho}{\Lambda^{\rho}}_{\sigma}X^\sigma
+                    \\[2ex]
+                    &= \eta_{\mu\rho} {\Lambda^{\rho}}_{\sigma}\eta^{\sigma\nu}X_{\nu}
+                    \\[2ex]
+                    &= {\Lambda_{\mu}}^{\nu}X_{\nu}
+                    \end{aligned}\]
+                    that is
+                    \[X^\mu \quad\to\quad X'^\mu = {\Lambda_{\mu}}^{\nu}X_{\nu}\]
+                    Here, we need to be careful of:
+                    <div class="important">
+                        Wheather the upper or lower index on the Lorentz transformation come first.
+                        \[\eta_{\mu\rho} {\Lambda^{\rho}}_{\sigma}\eta^{\sigma\nu} = {\Lambda_{\mu}}^{\nu}X_{\nu}\]
+                    </div>
+                    <h5>Inverse of Lorentz transformation</h5>
+                    There is a sense in ehich ${\Lambda_{\mu}}^{\nu}$ can be thought of a the components of the inverse matrix $\Lambda^{-1}$. To see this we back ti the definetion of the Lorentz transformation
+                    \[\begin{aligned}
+                    {\Lambda^\rho}_{\mu}\eta_{\rho\sigma}{\Lambda^{\sigma}}_{\nu} &= \eta_{\mu\nu}
+                    \\[2ex]
+                    {\Lambda^\rho}_{\mu}{\Lambda_{\rho\nu}} &= \eta_{\mu\nu}
+                    \\[2ex]
+                    {\Lambda^\rho}_{\mu}{\Lambda_{\rho\nu}}\eta^{\nu\sigma} &= \eta_{\mu\nu}\eta^{\nu\sigma}
+                    \\[2ex]
+                    {\Lambda^\rho}_{\mu}{\Lambda_{\rho}}^{\sigma} &= \delta_{\mu}^\sigma
+                    \\[2ex]
+                    {\Lambda_{\rho}}^{\sigma}{\Lambda^\rho}_{\mu} &= \delta_{\mu}^\sigma
+                    \end{aligned}\]
+                    Notice that, if we also have this equation
+                    \[{\left(\Lambda^{-1}\right)^{\sigma}}_{\rho}{\Lambda^\rho}_{\mu} = \delta_{\mu}^\sigma\]
+                    then compare two equations, we may obtain
+                    \[{\Lambda_{\rho}}^{\sigma} = {\left(\Lambda^{-1}\right)^{\sigma}}_{\rho}\]
+                    <h5>Tensors</h5>
+                    In general, tensors are generalization of vecotrs and covectors with many upper and lower indices,e.g.
+                    \[{T'^{\mu_1...\mu_n}}_{\nu_1...\nu_m} \text{is $(n,m)$-type}\]
+                    for example
+                    \[\begin{aligned}
+                    \text{scaler } t &: (0,0)\text{-type} &\text{ rank-0}
+                    \\[2ex]
+                    \text{vector } X^\mu &: (1,0)\text{-type}&\text{ rank-1}
+                    \\[2ex]
+                    \text{covector } X^\mu &: (0,1)\text{-type}&\text{ rank-1}
+                    \\[2ex]
+                    \text{lorentz transform tensor } {\Lambda^{\mu}}_{\nu} &: (1,1)\text{-type}&\text{ rank-2}
+                    \\[2ex]
+                    \text{electromagnetic tensor } {F^{\mu\nu}} &: (2,0)\text{-type} &\text{ rank-2}
+                    \end{aligned}\]
+                    
+                    <style>
+                        th{text-align: center;border:solid 0.5px}
+                        td{text-align: center;border:solid 0.5px #ccc}
+                    </style>
+                    <table>
+                        <caption>Example tensors on vector spaces and tensor fields on manifolds
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <th colspan="2" rowspan="2" width="75px"></th>
+                                <th colspan="7">$m$</th>
+                            </tr>
+                            <tr>
+                                <th scope="col" width="175px">0</th>
+                                <th scope="col" width="175px">1</th>
+                                <th scope="col" width="175px">2</th>
+                                <th scope="col" width="175px">3</th>
+                                <th scope="col" width="75px">$\cdots$</th>
+                                <th scope="col" width="175px">$M$</th>
+                                <th scope="col" width="75px">$\cdots$</th>
+                            </tr>
+                            <tr>
+                                <th rowspan="6">$n$</th>
+                                <th scope="row">0</th>
+                                <td><a href="https://en.wikipedia.org/wiki/Scalar_(mathematics)" title="Scalar (mathematics)">Scalar</a>, e.g. <a href="https://en.wikipedia.org/wiki/Scalar_curvature" title="Scalar curvature">scalar curvature</a></td>
+                                <td><a href="https://en.wikipedia.org/wiki/Covector"  title="Covector">Covector</a>, <a href="https://en.wikipedia.org/wiki/Linear_functional"  title="Linear functional">linear functional</a>, <a href="https://en.wikipedia.org/wiki/1-form"  title="1-form">1-form</a>, e.g. <a href="https://en.wikipedia.org/wiki/Multipole_expansion" title="Multipole expansion">dipole moment</a>, <a href="https://en.wikipedia.org/wiki/Gradient" title="Gradient">gradient</a> of a scalar field</td>
+                                <td><a href="https://en.wikipedia.org/wiki/Bilinear_form" title="Bilinear form">Bilinear form</a>, e.g. <a href="https://en.wikipedia.org/wiki/Inner_product"  title="Inner product">inner product</a>, <a href="https://en.wikipedia.org/wiki/Quadrupole_moment"  title="Quadrupole moment">quadrupole moment</a>, <a href="https://en.wikipedia.org/wiki/Metric_tensor" title="Metric tensor">metric tensor</a>, <a href="https://en.wikipedia.org/wiki/Ricci_curvature" title="Ricci curvature">Ricci curvature</a>, <a href="https://en.wikipedia.org/wiki/2-form"  title="2-form">2-form</a>, <a href="https://en.wikipedia.org/wiki/Symplectic_form"  title="Symplectic form">symplectic form</a></td>
+                                <td>3-form E.g. <a href="https://en.wikipedia.org/wiki/Multipole_moment"  title="Multipole moment">octupole moment</a></td>
+                                <td></td>
+                                <td>E.g. $M$-form i.e. <a href="https://en.wikipedia.org/wiki/Volume_form" title="Volume form">volume form</a></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><a href="https://en.wikipedia.org/wiki/Euclidean_vector" title="Euclidean vector">Euclidean vector</a></td>
+                                <td><a href="https://en.wikipedia.org/wiki/Linear_transformation"  title="Linear transformation">Linear transformation</a>,<sup id="cite_ref-BambergSternberg1991_13-0" ><a href="#cite_note-BambergSternberg1991-13">&#91;11&#93;</a></sup> <a href="https://en.wikipedia.org/wiki/Kronecker_delta" title="Kronecker delta">Kronecker delta</a></td>
+                                <td>E.g. <a href="https://en.wikipedia.org/wiki/Cross_product" title="Cross product">cross product</a> in three dimensions</td>
+                                <td>E.g. <a href="https://en.wikipedia.org/wiki/Riemann_curvature_tensor" title="Riemann curvature tensor">Riemann curvature tensor</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Inverse <a href="https://en.wikipedia.org/wiki/Metric_tensor" title="Metric tensor">metric tensor</a>, <a href="https://en.wikipedia.org/wiki/Bivector" title="Bivector">bivector</a>, e.g., <a href="https://en.wikipedia.org/wiki/Poisson_structure"  title="Poisson structure">Poisson structure</a></td>
+                                <td></td>
+                                <td>E.g. <a href="https://en.wikipedia.org/wiki/Elasticity_tensor"  title="Elasticity tensor">elasticity tensor</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">$\vdots$ </th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">$N$ </th>
+                                <td><a href="https://en.wikipedia.org/wiki/Multivector" title="Multivector">Multivector</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">$\vdots$</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    In order to qualify as a tensor, they must transform under a Lorentz transform as
+                    \[{T'^{\mu_1...\mu_n}}_{\nu_1...\nu_m}
+                    =
+                    \left({\Lambda^{\mu_1}}_{\rho_1}...{\Lambda^{\mu_n}}_{\rho_n}\right)
+                    \left({\Lambda_{\nu_1}}^{\sigma_1}...{\Lambda_{\nu_m}}^{\sigma_m}\right)
+                    {T'^{\rho_1...\rho_n}}_{\sigma_1...\sigma_m}
+                    \]
+                </li>
+            </ul>
+        </li>
+        <li id="Q3">
+            <h3>Conserved Currents</h3>
+            We started these lectures by discussing the charge density $\rho(\vec{x}, t)$, the current density
+            $J(\vec{x}, t)$ and their relation through the continuity equation
+            \[\frac{\partial \rho}{\partial t}+\nabla\cdot\vec{J} = 0\]
+            which tells us that charge is locally conserved.
+            <ul>
+                <li>
+                    <h4>4-Current</h4>
+                    If we use 4-vector
+                    \[J^\mu = \begin{pmatrix}\rho c\\ \vec{J}\end{pmatrix}\]
+                    we have
+                    \[
+                    \frac{\partial c\rho}{\partial ct} + \nabla\cdot\vec{J} = 0
+                    \then
+                    \frac{\partial J^0}{\partial X^0} + 
+                    \frac{\partial J^i}{\partial X^i}= 0
+                    \]
+                    solving that 
+                    \[{\partial}_\mu J^\mu = 0\]
+                </li>
+                <li>
+                    <h4>Transformation</h4>
+                    Consider a situation where there are only static charges with proper density $\rho_0$ (source) and no current. So, in $S$ frame, 
+                    \[J^\mu = \left(c\rho_0,\vec{0}\right)\]
+                    and in $S'$ frame which is related to $S$ frame by velocity $\vec{v}$, the current will apear as
+                    \[J'^{\mu} = {\Lambda^\mu}_{\nu}J^{\nu}\]
+                    compare every component
+                    \[\begin{cases}
+                    \rho' =\gamma \rho_0
+                    \\[1ex]
+                    \vec{J}' =  \left(-\gamma\rho_0v,0,0\right)
+                    \end{cases},\where\gamma>1\]
+                    <div class='note'>
+                    Note that the current density will become bigger:<br> consider the volumn
+                    \[dV = dxdydz
+                    \quad\to\quad
+                    dV' = dx'dydz = dxdydz/\gamma
+                    =dV/\gamma\]
+                    so
+                    \[\begin{aligned}
+                    \rho_0 =\frac{q}{V_0}
+                    \quad\to\quad
+                    \rho' =\frac{q}{V'_0}= \frac{q}{V_0/\gamma} = \gamma \rho_0 
+                    \end{aligned}\]
+                    </div>  
+                </li>
+            </ul>
+        </li>
+        <li id="Q4">
+            <h3>Guage Potential and Electromaganetic Tensor</h3>
+        </li>
+    </ol>
+<!--    <footer><p>Author: Chang-Mao Yang</p><p>Department: Physics</p></footer>-->
+</body>
