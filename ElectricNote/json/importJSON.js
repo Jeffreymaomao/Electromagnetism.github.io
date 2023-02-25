@@ -1,5 +1,20 @@
 function Graph(id, file) {
-    import(file, { assert: { type: 'json' } }).then(module => {
+    fetch(file)
+        .then((response) => response.json())
+        .then((json) => {
+            let state = json;
+            let grapher = document.getElementById(id);
+            let calculator = Desmos.GraphingCalculator(grapher, {
+                expressions: true,
+                expressionsCollapsed: true
+            });
+            calculator.setState(state);
+    });
+
+
+    /*
+    import(file).then(module => {
+        console.log(module.default)
         let state = module.default;
         let grapher = document.getElementById(id);
         let calculator = Desmos.GraphingCalculator(grapher, {
@@ -8,13 +23,16 @@ function Graph(id, file) {
         });
         calculator.setState(state);
     });
+    */
 }
 
 function GraphID(id){
-	Graph(id, `./${id}.json`)
+	Graph(id, `../json/${id}.json`)
 }
 
 GraphID('onlyRing')
 GraphID('dQ')
 GraphID('symmetry')
 GraphID('degree')
+
+
