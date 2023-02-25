@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="../css/prism.css">
 	<link rel="stylesheet" href="../css/style.css">
 
-	<script type="module" src='../json/importJSON.js' defer></script>
+	<script  src='../json/importJSON.js' defer></script>
 	<script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 	<script>
 	MathJax = {
@@ -26,6 +26,19 @@
 </head>
 <body>
 	<main>
+		<div id='topbar'>
+			<div id="btn-container">
+				<button class='btn moon' id="dark-mode-toggle"></button>
+				<script>
+					let darkToogle = document.querySelector("#dark-mode-toggle");
+					darkToogle.addEventListener('click', () => {
+						darkToogle.classList.toggle("sun");
+						darkToogle.classList.toggle("moon");
+						document.body.classList.toggle("latex-dark");
+					});
+				</script>
+			</div>
+		</div>
 		<h2>
 			Electric Field
 		</h2>
@@ -43,9 +56,15 @@
 		<hr>
 
 		<div class="proof">
-			要算出 \((0,0,z)\) 的電場，也就是需要算出環上面的每一小部分對點 \((0,0,z)\) 所產生的電場為多少，再加總起來就是該點受到的總電場。
+			要算出 \((0,0,z)\) 的電場，也就是需要算出環上面的每一小部分對點 \((0,0,z)\) 所產生的電場為多少，再加總<label for="sn-1" class="sidenote-toggle sidenote-number"></label>起來就是該點受到的總電場。
+			<input type="checkbox" id="sn-1" class="sidenote-toggle" />
+			<span class="sidenote">
+				由於圓環可以想成是連續物質所組稱的，所以在這裡的加總不是用總和 \(\sum\) 一點一點加起來，而是用積分 \(\int\) 算出總和。
+			</span>
+
 			<div id="dQ" class='calculator demo' style="height: 400px;"></div>
 			<p>在繞圈的紅點可以想像成在環上面的每一個小部分</p>
+
 			<ul>
 				<li>
 					可以從圖中看到環到 \(0,0,z\) 的距離固定為
@@ -93,11 +112,5 @@
 
 
 	</main>
-	<!-- <button id="dark-mode-toggle">Toggle dark mode</button>
-		<script>
-			document.querySelector("#dark-mode-toggle").addEventListener('click', () => {
-				document.body.classList.toggle("latex-dark");
-			});
-		</script> -->
 </body>
 </html>
