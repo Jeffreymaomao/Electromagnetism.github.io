@@ -1,0 +1,115 @@
+*{
+	box-sizing: border-box;
+/*	position: relative;*/
+}
+.example{
+	display: block;
+	border-radius: 5px;
+	margin: 10px 0px;
+	padding: 5px 20px;
+	background-color: #fff;
+	box-shadow: 0 0 5px #bbb;
+	overflow: hidden;
+
+	text-decoration: none;
+	z-index: 1;
+	transform: translate(0,0);
+
+	transition-duration:0.3s;
+
+}
+.example:hover{
+	transform: translate(0px,-5px);
+	border: 0;
+/*	color: black;*/
+}
+
+.example:before{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #fdffd1;
+	clip-path: circle(0%);
+	z-index: -1;
+
+	transition-duration: 0.3s;
+}
+.example:hover:before{
+	clip-path: circle(100%);
+}
+
+.example:active{
+	transform: translate(0px,0px);
+}
+
+a:focus{
+	display: none;
+}
+/* ---------------------------------------- */
+.img{
+	position: relative;
+	display: block;
+	left: 50%;
+	border-radius: 10px;
+/*	border: solid 1px #bbb;*/
+	transform: translateX(-50%);
+	overflow: hidden;
+	text-align: center;
+}
+.img.demo{
+	padding: 20px;
+	background-color: #fff;
+}
+.img.demo:after{
+	content: 'open pdf';
+	color: #fff;
+	position: absolute;
+	background-color: #333;
+	border-radius: 5px;
+	display: block;
+	right: 0;
+	bottom: 5px;
+	width: 0;
+	height: 30px;
+	vertical-align: ceter;
+	transition: all 0.3s;
+}
+.img.demo:hover:after{
+	padding: 0px 10px 4px 10px;
+	width: 85px;
+}
+
+.demo+p{
+	display: block;
+	text-align: center;
+	font-size: 8pt;
+}
+
+.demo{
+	border: 1px #ccc solid;
+}
+
+
+/* ---------------------------------------- */
+body {
+  font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times,'標楷體',DFKai-sb,BiauKai,'AR PL UKai TW', serif;
+}
+code,pre,kbd {
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New';
+}
+
+/* ---------------------------------------- */
+
+
+
+
+
+
+
+
+
+

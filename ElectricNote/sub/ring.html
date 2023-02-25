@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/LaTeX.css">
+	<!-- https://latex.vercel.app/ -->
+	<link rel="stylesheet" href="../css/prism.css">
+	<link rel="stylesheet" href="../css/style.css">
+
+	<script  src='../json/importJSON.js' defer></script>
+	<script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+	<script>
+	MathJax = {
+	    svg: {
+	         fontCache: 'global'
+	    }
+	};
+	</script>
+	<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<title>Electric Field</title>
+</head>
+<body>
+	<main>
+		<h2>
+			Electric Field
+		</h2>
+		
+		<hr>
+		<div class="theorem">Electric Field - Ring of Charge（電荷環）</div>
+
+		<div id="onlyRing" class='calculator demo' style="height: 400px;"></div>
+		<p>電荷環（紅色為在 \(x,y\) 平面上的環，藍點表示 \((0,0,z)\) 位置。）</p>
+		<p>
+			一個帶有均勻電荷半徑為 \(a\) 的環（如圖），平躺在 \(x,y\) 平面上，其對於 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
+			\[ \vec{E} = \frac{zkQ}{\left(z^2+a^2\right)}\hat{z}\text{，}\]
+			其中 \(Q\) 為總電荷，\(k\) 為庫侖常數（Coulomb's constant）\(k=1/4\pi\varepsilon_0\) 。
+		</p>
+		<hr>
+
+		<div class="proof">
+			要算出 \((0,0,z)\) 的電場，也就是需要算出環上面的每一小部分對點 \((0,0,z)\) 所產生的電場為多少，再加總起來就是該點受到的總電場。
+			<div id="dQ" class='calculator demo' style="height: 400px;"></div>
+			<p>在繞圈的紅點可以想像成在環上面的每一個小部分</p>
+			<ul>
+				<li>
+					可以從圖中看到環到 \(0,0,z\) 的距離固定為
+					\[r = \left|\vec{r}_z-\vec{a}\right| = \sqrt{a^2+z^2}\]
+				</li>
+				<li>
+					每一小點所產生的電場與 \(\vec{r}_z-\vec{a}\) 相同（藍色），也可以從中看到，每一個小點對面對面都有另一個小點（對 \(z\) 軸對稱），即為
+					<div id="symmetry" class='calculator demo' style="height: 400px;"></div>
+					所以 \(x,y\) 方向的電場全部抵銷，只剩下 \(z\) 方向的電場
+					\[\vec{E} = \int d\vec{E} = \int dE_z\cdot\hat{z}\]
+				</li>
+				<li>
+					而每一小點所帶的電荷為 \(dQ\) ，對 \(0,0,z\) 所產生的電場「大小」為
+					\[dE = \frac{kdQ}{r^2}\]
+					又因為對稱性只剩下  \(z\) 方向的電場
+					\[dE_z = dE\cos\theta = \frac{kdQ}{r^2}\cos\theta\]
+					其中 \(\theta\) 為
+					<div id="degree" class='calculator demo' style="height: 400px;"></div>
+					所以 \(\cos\theta\) 可以表示為
+					\[\cos\theta = \frac{z}{\sqrt{z^2+a^2}}\]
+				</li>
+				<li>
+					因為電荷是均勻分佈，所以線電荷密度 \(\lambda\) 為一個常數，即為
+					\[\lambda = \frac{Q}{2\pi R} = \frac{\text{total charge}}{\text{total length}} = constant\]
+					因此
+					\[\int dQ = \int \lambda ds =  \lambda\int ds = \frac{Q}{2\pi R}\int_{0}^{2\pi}ds = Q \]
+
+				</li>
+			</ul>
+			最後，根據上方幾點說明可以知道
+			\[\begin{aligned}
+			\vec{E} &= \int d\vec{E} = \int dE_z\cdot\hat{z}\\[2ex]
+			&= \int dE\cos\theta\cdot\hat{z}\\[2ex]
+			&= \int \frac{kQ}{r^2}\cos\theta \cdot\hat{z}\\
+			\end{aligned}\]
+			因為 \(k,\theta,r\) 對於一整個環都是常數，所以可以提出來
+			\[\vec{E} = \frac{k}{r^2}\cos\theta\cdot\hat{z}\int dQ \]
+			算出
+			\[\vec{E} = \frac{k}{r^2}\cos\theta\cdot\hat{z} \cdot Q\]
+			將 \(\theta,r\) 用 \(z,a\) 表示
+			\[\vec{E} = \frac{kQ}{\left(\sqrt{z^2+a^2}\right)^2}\frac{z}{\sqrt{z^2+a^2}}\cdot\hat{z} \]
+			得到均勻電荷環，對 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
+			\[\vec{E} = \frac{zkQ}{\left(z^2+a^2\right)^{3/2}}\cdot\hat{z}\text{。}\]
+ 		</div>
+
+
+	</main>
+	<!-- <button id="dark-mode-toggle">Toggle dark mode</button>
+		<script>
+			document.querySelector("#dark-mode-toggle").addEventListener('click', () => {
+				document.body.classList.toggle("latex-dark");
+			});
+		</script> -->
+</body>
+</html>
