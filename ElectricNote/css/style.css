@@ -11,7 +11,7 @@
        url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff) format('woff'),
        url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.ttf) format('truetype');
 }
-http://www.google.com/fonts/earlyaccess/fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot
+/*http://www.google.com/fonts/earlyaccess/fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot*/
 
 *{
 	-webkit-box-sizing: border-box;
@@ -23,7 +23,7 @@ http://www.google.com/fonts/earlyaccess/fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKa
 	border-radius: 5px;
 	margin: 10px 0px;
 	padding: 5px 20px;
-	background-color: #fff;
+	background-color: var(--kbd-bg-color);
 	-webkit-box-shadow: 0 0 5px #bbb;
 	        box-shadow: 0 0 5px #bbb;
 	overflow: hidden;
@@ -57,7 +57,7 @@ http://www.google.com/fonts/earlyaccess/fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKa
 	right: 0;
 	top: 0;
 	bottom: 0;
-	background-color: #fdffd1;
+	background-color: var(--pre-bg-color);
 	-webkit-clip-path: circle(0%);
 	        clip-path: circle(0%);
 	z-index: -1;
@@ -83,30 +83,32 @@ a:focus{
 	display: none;
 }
 /* ---------------------------------------- */
-.img{
-	position: relative;
+.img-container{
 	display: block;
-	left: 50%;
-	border-radius: 10px;
-/*	border: solid 1px #bbb;*/
-	-webkit-transform: translateX(-50%);
-	    -ms-transform: translateX(-50%);
-	        transform: translateX(-50%);
-	overflow: hidden;
 	text-align: center;
 }
-.img.demo{
+
+.img{
+	display: inline-block;
+	border-radius: 10px;
+	overflow: hidden;
+	text-align: center;
+	margin: 10px;
 	padding: 20px;
+	position: relative;
+}
+.img.demo{
 	background-color: #fff;
 }
+
 .img.demo:after{
-	content: 'open pdf';
+	content: 'open source';
 	color: #fff;
 	position: absolute;
-	background-color: #333;
+	background-color: rgba(0, 0, 0, 0.4);
 	border-radius: 5px;
 	display: block;
-	right: 0;
+	right: 2px;
 	bottom: 5px;
 	width: 0;
 	height: 30px;
@@ -116,8 +118,8 @@ a:focus{
 	transition: all 0.3s;
 }
 .img.demo:hover:after{
-	padding: 0px 10px 4px 10px;
-	width: 85px;
+/*	padding: 0px 2px 4px 2px;*/
+	width: 120px;
 }
 
 .demo+p{
@@ -201,7 +203,13 @@ code,pre,kbd {
 	width: 30px;
 	height: 30px;
 }
-
+/* ---------------------------------- */
+canvas{
+/*	width: 600px;*/
+/*	height: 400px;*/
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
 
 
 

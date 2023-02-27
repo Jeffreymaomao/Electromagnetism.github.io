@@ -3,24 +3,53 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jeffreymaomao/figure/main/fig2.ico">
+
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/LaTeX.css">
 	<link rel="stylesheet" href="css/prism.css">
 	<link rel="stylesheet" href="css/style.css">
 
     
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
+    <!-- <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script> -->
+	<script>MathJax = {svg: {fontCache: 'global'}};</script>
+    <!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+	
+
 
 	<title>Electrostatics</title>
 	<!-- http://hyperphysics.phy-astr.gsu.edu/hbase/electric/elelin.html -->
 </head>
 <body>
 	<main>
-		<h1>Electrostatics</h1>
-		<h2>Electric Field</h2>
+		<div id='topbar'>
+			<div id="btn-container">
+				<button class='btn moon' id="dark-mode-toggle"></button>
+			</div>
+		</div>
+		<h1>Electrostatics（靜電學）</h1>
+		<h2>Electric Field（電場）</h2>
+		<p>	
+		電場是存在於電荷周圍能傳遞電荷與電荷之間交互作用的物理場。而正電荷、反電荷的電場方向如圖
+		<div class="img-container">
+			<a href="https://zh.wikipedia.org/zh-tw/%E9%9B%BB%E5%A0%B4#/media/File:VFPt_plus_thumb.svg" target="_blank" class="img demo">
+				<img src="assets/VFPt_plus_thumb.svg" alt="正電荷電場方向" class=""></a>
+			<a href="https://zh.wikipedia.org/zh-tw/%E9%9B%BB%E5%A0%B4#/media/File:VFPt_minus_thumb.svg" target="_blank" class="img demo">
+				<img src="assets/VFPt_minus_thumb.svg" alt="負電荷電場方向">
+			</a>
+		</div>
+		記法：在空間任意一點所受到的電場，就是在該點放一個正電荷後，所受到的電場方向。
+
+		<canvas id='direction' style="width: 600px;height: 300px;">
+		</canvas>
+		<script src="js/direction.js"></script>
+
+		</p>
 		<h3>example</h3>
 		<a href="./sub/ring.html"  class="example">
 			\(\vec{E}\) Electric Field - Ring of charge
