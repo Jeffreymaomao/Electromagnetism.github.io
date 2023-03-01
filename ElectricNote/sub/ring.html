@@ -11,10 +11,11 @@
 	<link rel="stylesheet" href="../css/prism.css">
 	<link rel="stylesheet" href="../css/style.css">
 
-	<script type="module" src='../json/importJSON.js' defer></script>
 	<script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/ringImport.js" defer></script>
+
 	<script>MathJax = {svg: {fontCache: 'global'}};</script>
-	<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
 	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <title>Electric Field</title>
@@ -23,15 +24,8 @@
 	<main>
 		<div id='topbar'>
 			<div id="btn-container">
-				<button class='btn moon' id="dark-mode-toggle"></button>
-				<script>
-					let darkToogle = document.querySelector("#dark-mode-toggle");
-					darkToogle.addEventListener('click', () => {
-						darkToogle.classList.toggle("sun");
-						darkToogle.classList.toggle("moon");
-						document.body.classList.toggle("latex-dark");
-					});
-				</script>
+				<button class='btn moon light' id="dark-mode-toggle"></button>
+				<a href="../main.html"><button class='btn home light' id="home-btn"></button></a>
 			</div>
 		</div>
 		<h2>
@@ -42,20 +36,24 @@
 		<div class="theorem">Electric Field - Ring of Charge（電荷環）</div>
 
 		<div id="onlyRing" class='calculator demo' style="height: 400px;"></div>
-		<p>電荷環（紅色為在 \(x,y\) 平面上的環，藍點表示 \((0,0,z)\) 位置。）</p>
 		<p>
-			一個帶有均勻電荷半徑為 \(a\) 的環（如圖），平躺在 \(x,y\) 平面上，其對於 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
+			電荷環（紅色為在 \(x,y\) 平面上的環，黑點表示 \((0,0,z)\) 位置。）
+		</p>
+		<p>
+			一個帶有均勻電荷、半徑為 \(a\) 的環（如圖），平躺在 \(x,y\) 平面上，其對於 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
 			\[ \vec{E} = \frac{zkQ}{\left(z^2+a^2\right)}\hat{z}\text{，}\]
 			其中 \(Q\) 為總電荷，\(k\) 為庫侖常數（Coulomb's constant）\(k=1/4\pi\varepsilon_0\) 。
 		</p>
 		<hr>
 
 		<div class="proof">
-			要算出 \((0,0,z)\) 的電場，也就是需要算出環上面的每一小部分對點 \((0,0,z)\) 所產生的電場為多少，再加總<label for="sn-1" class="sidenote-toggle sidenote-number"></label>起來就是該點受到的總電場。
-			<input type="checkbox" id="sn-1" class="sidenote-toggle" />
-			<span class="sidenote">
-				由於圓環可以想成是連續物質所組稱的，所以在這裡的加總不是用總和 \(\sum\) 一點一點加起來，而是用積分 \(\int\) 算出總和。
-			</span>
+			<p>
+				要算出 \((0,0,z)\) 的電場，也就是需要算出環上面的每一小部分對點 \((0,0,z)\) 所產生的電場為多少，再加總<label for="sn-1" class="sidenote-toggle sidenote-number"></label>起來就是該點受到的總電場。
+				<input type="checkbox" id="sn-1" class="sidenote-toggle" />
+				<span class="sidenote">
+					由於圓環可以想成是連續物質所組稱的，所以在這裡的加總不是用總和 \(\sum\) 一點一點加起來，而是用積分 \(\int\) 算出總和。
+				</span>
+			</p>
 
 			<div id="dQ" class='calculator demo' style="height: 400px;"></div>
 			<p>在繞圈的紅點可以想像成在環上面的每一個小部分</p>
@@ -89,22 +87,23 @@
 
 				</li>
 			</ul>
-			最後，根據上方幾點說明可以知道
-			\[\begin{aligned}
-			\vec{E} &= \int d\vec{E} = \int dE_z\cdot\hat{z}\\[2ex]
-			&= \int dE\cos\theta\cdot\hat{z}\\[2ex]
-			&= \int \frac{kQ}{r^2}\cos\theta \cdot\hat{z}\\
-			\end{aligned}\]
-			因為 \(k,\theta,r\) 對於一整個環都是常數，所以可以提出來
-			\[\vec{E} = \frac{k}{r^2}\cos\theta\cdot\hat{z}\int dQ \]
-			算出
-			\[\vec{E} = \frac{k}{r^2}\cos\theta\cdot\hat{z} \cdot Q\]
-			將 \(\theta,r\) 用 \(z,a\) 表示
-			\[\vec{E} = \frac{kQ}{\left(\sqrt{z^2+a^2}\right)^2}\frac{z}{\sqrt{z^2+a^2}}\cdot\hat{z} \]
-			得到均勻電荷環，對 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
-			\[\vec{E} = \frac{zkQ}{\left(z^2+a^2\right)^{3/2}}\cdot\hat{z}\text{。}\]
+			<p>
+				最後，根據上方幾點說明可以知道
+				\[\begin{aligned}
+				\vec{E} &= \int d\vec{E} = \int dE_z\cdot\hat{z}\\[2ex]
+				&= \int dE\cos\theta\cdot\hat{z}\\[2ex]
+				&= \int \frac{kQ}{r^2}\cos\theta \cdot\hat{z}\\
+				\end{aligned}\]
+				因為 \(k,\theta,r\) 對於一整個環都是常數，所以可以提出來
+				\[\vec{E} = \frac{k}{r^2}\cos\theta\cdot\hat{z}\int dQ \]
+				算出
+				\[\vec{E} = \frac{k}{r^2}\cos\theta\cdot\hat{z} \cdot Q\]
+				將 \(\theta,r\) 用 \(z,a\) 表示
+				\[\vec{E} = \frac{kQ}{\left(\sqrt{z^2+a^2}\right)^2}\frac{z}{\sqrt{z^2+a^2}}\cdot\hat{z} \]
+				得到均勻電荷環，對 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
+				\[\vec{E} = \frac{zkQ}{\left(z^2+a^2\right)^{3/2}}\cdot\hat{z}\text{。}\]
+			</p>
  		</div>
-
 
 	</main>
 </body>

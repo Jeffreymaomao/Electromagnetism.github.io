@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Jeffreymaomao/figure/main/fig2.ico">
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/LaTeX.css">
+	<!-- https://latex.vercel.app/ -->
+	<link rel="stylesheet" href="../css/prism.css">
+	<link rel="stylesheet" href="../css/style.css">
+
+	<script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/diskImport.js" defer></script>
+
+	<script>MathJax = {svg: {fontCache: 'global'}};</script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<title>Electric Field</title>
+</head>
+<body>
+	<main>
+		<div id='topbar'>
+			<div id="btn-container">
+				<button class='btn moon light' id="dark-mode-toggle"></button>
+				<a href="../main.html"><button class='btn home light' id="home-btn"></button></a>
+			</div>
+		</div>
+		<h2>
+			Electric Field
+		</h2>
+		
+		<hr>
+		<div class="theorem">Electric Field - Disk of Charge（電荷盤）</div>
+
+		<div id="onlyDisk" class='calculator demo' style="height: 400px;"></div>
+		<p>
+			電荷盤（紅色為在 \(x,y\) 平面上的盤，黑點表示 \((0,0,z)\) 位置。）
+		</p>
+		<p>
+			一個電荷分布均勻、半徑為 \(R\) 的盤（如圖），平躺在 \(x,y\) 平面上，其對於 \(z\) 軸上一點 \((0,0,z)\) 所產生的電場為
+			\[ \vec{E} = 2\pi k \sigma \left(1-\frac{z}{\sqrt{z^2+R^2}}\right)\hat{z}\text{，}\]
+			其中 \(\sigma\) 為面電荷，\(k\) 為庫侖常數（Coulomb's constant）\(k=1/4\pi\varepsilon_0\) 。
+		</p>
+		<hr>
+
+		<div class="proof">
+			<p>
+				要算出 \((0,0,z)\) 的電場，也就是需要算出環上面的每一小部分對點 \((0,0,z)\) 所產生的電場為多少，再加總起來就是該點受到的總電場。
+			</p>
+			<p>
+				加總的方法有很多，可以用 \(x,y\) 笛卡爾座標、 \(r,\theta\) 極座標慢慢將每一個點都算過一次，但由於已知一個圓形環<label for="sn-1" class="sidenote-toggle sidenote-number"></label>對 \(0,0,z\) 所產生的電場為 
+				<input type="checkbox" id="sn-1" class="sidenote-toggle" />
+				<span class="sidenote">
+					在 \(x,y\) 平面上的電荷環，對 \(0,0,z\) 所產生的電場，<a href="ring.html" target="_blank">計算過程連結</a>。
+				</span>
+				\[ \vec{E}_{ring} = \frac{zkQ}{\left(z^2+a^2\right)^{3/2}}\hat{z}\text{，}\]
+				其中 \(Q\) 為總電荷。因此可以改成將很多個小環所產生的電場，一點一點加起來，即
+				\[\vec{E} = \int d\vec{E}_{ring} = \hat{z}\cdot \int dE_{ring}\text{，}\]
+				其中
+				<ul>
+					<li>每個環所造成的電場都是朝 \(z\) 方向，所以可以將單位向量 \(\hat{z}\) 提出來；</li>
+					<li>由於一個圓盤是由連續的小環，一點一點所組成，所以要用積分。</li>
+				</ul>
+			</p>
+			<p>
+				如圖
+				<div id="dR" class='calculator demo' style="height: 400px;"></div>
+				可以看到
+				<ul>
+					<li>每一個環的半徑 \(r\) 都不一樣；</li>
+					<li>半徑 \(r\) 從最裡面到最外面，對應到 \(r=0\) 到  \(r=R\)；</li>
+					<li>
+						隨著半徑 \(r\) 的不同，其微小表面積也不同，因此每一圈的帶電量都不一樣。面電荷密度為 \(\sigma\) ，也等於總電荷除以總面積
+						\[\sigma = \frac{Q}{\pi R^2}\quad\Rightarrow\quad Q=\sigma \pi R^2\text{，}\]
+						而每一小圈所帶的為小電荷為
+						\[dQ = d(\sigma \pi r^2) = \sigma \pi dr^2 = 2\pi r \sigma dr\text{。}\]
+					</li>
+				</ul>
+			</p>
+			<p>
+				根據以上推論，可以導出
+				\[\begin{aligned}
+				\vec{E} &= \int d\vec{E}_{ring} = \hat{z}\int dE_{ring}\\[2ex]
+				&= \hat{z}\int d\left(\frac{zkQ}{\left(r^2+z^2\right)^{3/2}}\right)
+				\end{aligned}\]
+				由於是計算特定一點 \(0,0,z\) 所的電場，在積分時 \(z\) 會是一個常數（不會隨著 \(r\) 改變），因此可以將常數都提出來
+				\[\begin{aligned}
+				\vec{E} &= kz\cdot\hat{z}\cdot\int d\left(\frac{Q}{\left(r^2+z^2\right)^{3/2}}\right)\\[2ex]
+				&= kz\cdot\hat{z}\cdot\int \frac{dQ}{\left(r^2+z^2\right)^{3/2}}
+				\end{aligned}\]
+				再根據上面得到每一小圈所帶的電荷 \(dQ = 2\pi r\sigma dr\) ，帶入得到
+				\[\vec{E} = kz\cdot\hat{z}\cdot\int \frac{2\pi r\sigma dr}{\left(r^2+z^2\right)^{3/2}}\]
+				再帶入積分上下限， \(r\) 從中心 \(0\) 到圓盤半徑 \(R\)，並計算<label for="sn-2" class="sidenote-toggle sidenote-number"></label>
+				<input type="checkbox" id="sn-2" class="sidenote-toggle" />
+				<span class="sidenote">
+					計算這種類型的積分可以到 <a href="https://www.integral-calculator.com/" target="_blank">https://www.integral-calculator.com</a>，直接輸入你的公式，可以看到積分步驟。
+				</span>
+				\[\begin{aligned}
+				\vec{E} &= kz\cdot\hat{z}\cdot\int_{0}^{R} \frac{2\pi r\sigma dr}{\left(r^2+z^2\right)^{3/2}}\\[2ex]
+				&= kz\cdot\hat{z}\cdot\int_{0}^{R} \frac{\pi \sigma}{\left(r^2+z^2\right)^{3/2}}dr^2\\[2ex]
+				&= kz\cdot\hat{z}\cdot\int_{0}^{R} \frac{\pi \sigma}{\left(r^2+z^2\right)^{3/2}}d\left(r^2+z^2\right)\\[2ex]
+				&= kz\pi\sigma \cdot \hat{z}\cdot\int_{0}^{R} \frac{1}{u^{3/2}}du,\quad u=r^2+z^2\\[2ex]
+				&= kz\pi\sigma \cdot \hat{z}\cdot \left(-2u^{-\frac{1}{2}}\right)\bigg|_{r=0}^{r=R}\\[2ex]
+				&= kz\pi\sigma \cdot \left(-\frac{2}{\sqrt{r^2+z^2}}\right)\bigg|_{r=0}^{r=R}\\[2ex]
+				&= kz\pi\sigma \cdot \left(\frac{2}{z}-\frac{2}{\sqrt{R^2+z^2}}\right)\\[2ex]
+				&= 2\pi k\sigma \cdot \left(1-\frac{z}{\sqrt{R^2+z^2}}\right)
+				\end{aligned}\]
+			</p>
+			
+
+
+
+ 		</div>
+
+	</main>
+</body>
+</html>

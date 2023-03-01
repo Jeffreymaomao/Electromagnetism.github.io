@@ -88,7 +88,6 @@ var arrow = {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // drawArrow(ctx, mouse.x, mouse.y, mouse.x+direction.x, mouse.y+direction.y, 2, '#000');
     arrow.draw();
     charge.draw();
     ball.draw();
@@ -104,6 +103,12 @@ function update() {
 	arrow.length = Math.sqrt((arrow.dirx)**2+(arrow.diry)**2)+1e-5;
 	arrow.endx = mouse.x + 2*1e3*arrow.dirx/arrow.length**1.5;
 	arrow.endy = mouse.y + 2*1e3*arrow.diry/arrow.length**1.5;
+	if(background.style=='dark'){
+			arrow.color = 'black';
+	}
+	else{
+		arrow.color = 'white';
+	}
 }
 
 function loop() {

@@ -82,6 +82,9 @@
 a:focus{
 	display: none;
 }
+a{
+	text-decoration: none;
+}
 /* ---------------------------------------- */
 .img-container{
 	display: block;
@@ -129,6 +132,7 @@ a:focus{
 }
 
 .demo{
+	border: 1px solid #ccc;
 }
 
 
@@ -165,6 +169,7 @@ code,pre,kbd {
   border-radius: 5px;
   transition-duration: 0.3s;
   padding: 10px;
+  margin: 0px 10px;
   cursor: pointer;
 	box-shadow: 0 0 5px #bbb inset,
 							0 0 5px #aaa;
@@ -184,12 +189,15 @@ code,pre,kbd {
 							0 0 2px #ccc;
 }
 
-.moon{
+.light{
 	background-color: #ddd;
 }
-.sun{
+.dark{
 	background-color: #aaa;
 }
+
+
+
 .moon:before{
 	content: url('./moon.svg');
 	display: block;
@@ -202,12 +210,20 @@ code,pre,kbd {
 	width: 30px;
 	height: 30px;
 }
+
+.home:before{
+	content: url('./home.svg');
+	display: block;
+	width: 30px;
+	height: 30px;
+}
+
 /* ---------------------------------- */
 canvas{
 /*	width: 600px;*/
 /*	height: 400px;*/
-	border: 1px solid #ccc;
-	border-radius: 10px;
+/*	border: 1px solid #ccc;*/
+/*	border-radius: 10px;*/
 }
 
 
