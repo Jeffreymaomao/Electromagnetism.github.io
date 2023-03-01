@@ -2,6 +2,7 @@ var mouse = { x: 100, y: 100 };
 var canvas = document.getElementById('direction');
 var ctx = canvas.getContext('2d');
 const scale = 2;
+[canvas.style.width,canvas.style.height] = ['600px','300px'];
 [canvas.width, canvas.height] = [parseInt(canvas.style.width)*scale, parseInt(canvas.style.height)*scale];
 
 var charge = {
@@ -124,5 +125,4 @@ canvas.addEventListener('mousemove', function(e) {
     mouse.x = (e.clientX - rect.x)*cssScaleX;
     mouse.y = (e.clientY - rect.y)*cssScaleY;
 });
-
 loop();
